@@ -1,4 +1,5 @@
 # Barcelona
+Top time: `13.6XX`
 
 ## T1
 - Breaking point ~75m
