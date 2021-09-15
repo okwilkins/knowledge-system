@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "000 Index.md",
-            "mode": "source"
+            "file": "Barcelona.md",
+            "mode": "preview"
           }
         }
       }
@@ -39,13 +39,21 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#paper",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
+            }
+          },
+          {
+            "id": "9e24d82fcbca6df7",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
             }
           }
         ]
@@ -68,7 +76,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "000 Index.md",
+                "file": "Barcelona.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -78,25 +86,36 @@
                 "unlinkedCollapsed": false
               }
             }
+          },
+          {
+            "id": "825e1b68d20f2529",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 544,
-    "collapsed": true
+    "width": 308
   },
   "active": "34f991075124e0b3",
   "lastOpenFiles": [
+    "Barcelona.md",
+    "Singapore.md",
+    "Zanvoort.md",
+    "F1 2020.md",
+    "F1.md",
+    "Short Shifting.md",
+    "020 Interests MOC.md",
     "000 Index.md",
     "010 Science and Technology MOC.md",
-    "Three-Pass Approach.md",
-    "Literature Survey.md",
-    "First Pass.md",
-    "Second Pass.md",
-    "Learning.md",
-    "Currently Writing/Recommender Systems Survey.md",
-    "Third Pass.md",
-    "_Nexus.md"
+    "020 Interests.md"
   ]
 }
