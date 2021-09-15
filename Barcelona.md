@@ -34,7 +34,21 @@
 ## T11
 - Should be in 5th before the stat of this corner
 - When about inline with green strip to your right, break
-- BReak with 50% power down to 3rd
+- Break with 50% power down to 3rd
+
+## T12
+- Stay in 5th
+- Just after gap in fence to left break
+- Down to 3rd
+
+## T13/T14
+- Get as far right as possible, coming from the left
+- Break just as rumble strips on left end (a bit before the sign over head)
+- Down to 2nd
+- Slowly accelerate through chicane
+
+## T15
+- Full throttle coming out out of corner before 
 
 ---
 Tags: #MOC, #interests, #f1, #f12020, #game, #esports, #competitive
