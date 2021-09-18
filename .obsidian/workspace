@@ -9,17 +9,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Three-Pass Approach.md",
+            "file": "Five Minute Journal.md",
             "mode": "preview"
           }
-        }
-      },
-      {
-        "id": "7d189aac806d79c8",
-        "type": "leaf",
-        "state": {
-          "type": "graph",
-          "state": {}
         }
       }
     ],
@@ -84,6 +76,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Five Minute Journal.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,17 +105,17 @@
     "direction": "horizontal",
     "width": 308
   },
-  "active": "7d189aac806d79c8",
+  "active": "268a241562297562",
   "lastOpenFiles": [
+    "Five Minute Journal.md",
+    "Untitled.md",
+    "000 Home.md",
+    "Journal/Untitled.md",
+    "Three-Pass Approach.md",
     "Literature Survey.md",
     "First Pass.md",
     "Second Pass.md",
     "Third Pass.md",
-    "Three-Pass Approach.md",
-    "010 Science and Technology MOC.md",
-    "000 Home.md",
-    "Technique.md",
-    "Currently Writing/Recommender Systems Survey.md",
-    "OLAP Cube.md"
+    "010 Science and Technology MOC.md"
   ]
 }

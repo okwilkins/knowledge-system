@@ -1,5 +1,8 @@
 {
   "alwaysUpdateLinks": true,
   "obsidianCss": false,
-  "spellcheck": true
+  "spellcheck": true,
+  "spellcheckDictionary": [
+    "Journaling"
+  ]
 }
