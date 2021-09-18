@@ -10,7 +10,7 @@ This pass can take about **four to five hours** for beginners and about an hour 
 Type:
 #paper
 Tags:
-[[Learning]], [[Accademia]], [[Technique]]
+#learning, #academia, #technique
 Author(s):
 [[Srinivasan Keshav]]
 Related:

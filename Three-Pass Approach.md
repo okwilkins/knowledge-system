@@ -6,7 +6,7 @@ The main idea of the three-pass approach is to read a paper within three passes.
 Type:
 #paper
 Tags:
-[[Learning]], [[Accademia]], [[Technique]]
+#learning, #academia, #technique
 Author(s):
 [[Srinivasan Keshav]]
 Related:

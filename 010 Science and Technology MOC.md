@@ -1,5 +1,4 @@
 # Science and Technology TOC
-- [[OLAP Cube]]
 - [[Literature Survey]]
 - [[Three-Pass Approach]]
 

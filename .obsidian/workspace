@@ -4,10 +4,10 @@
     "type": "split",
     "children": [
       {
-        "id": "36655ac66af4c357",
+        "id": "86ce30fd6611eff2",
         "type": "leaf",
         "state": {
-          "type": "empty",
+          "type": "graph",
           "state": {}
         }
       }
@@ -101,17 +101,17 @@
     "direction": "horizontal",
     "width": 308
   },
-  "active": "36655ac66af4c357",
+  "active": "86ce30fd6611eff2",
   "lastOpenFiles": [
-    "OLAP Cube.md",
-    "What's An OLAP Cube.md",
-    "F1.md",
-    "Idea Emergence.md",
     "010 Science and Technology MOC.md",
-    "000 Home.md",
-    "Pasted image 20210918163113.png",
-    "Untitled.md",
-    "Barcelona.md",
-    "000 Index.md"
+    "Literature Survey.md",
+    "First Pass.md",
+    "Three-Pass Approach.md",
+    "Third Pass.md",
+    "Second Pass.md",
+    "Technique.md",
+    "Currently Writing/Recommender Systems Survey.md",
+    "OLAP Cube.md",
+    "What's An OLAP Cube.md"
   ]
 }

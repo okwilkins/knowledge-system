@@ -18,7 +18,7 @@ With this first pass, you may choose to not read further. This is fine, for the 
 Type:
 #paper
 Tags:
-[[Learning]], [[Accademia]], [[Technique]], [[Three-Pass Approach]]
+#learning, #academia, #technique
 Author(s):
 [[Srinivasan Keshav]]
 Related:

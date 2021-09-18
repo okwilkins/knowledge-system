@@ -17,7 +17,7 @@ If you have run out of time can choose to:
 Type:
 #paper
 Tags:
-[[Learning]], [[Accademia]], [[Technique]]
+#learning, #academia, #technique
 Author(s):
 [[Srinivasan Keshav]]
 Related:

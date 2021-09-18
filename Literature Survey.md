@@ -13,7 +13,7 @@ The third step is to go to the website for these top conferences and look throug
 Type:
 #paper
 Tags:
-[[Learning]], [[Accademia]], [[Technique]]
+#learning, #academia, #technique
 Author(s):
 [[Srinivasan Keshav]]
 Related:
