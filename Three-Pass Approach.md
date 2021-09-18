@@ -12,8 +12,6 @@ Author(s):
 Related:
 [[First Pass]], [[Second Pass]], [[Third Pass]], [[Literature Survey]]
 References:
-
-Link:
 https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf
 Date Accessed:
 2021-05-11

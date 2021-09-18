@@ -22,10 +22,8 @@ Tags:
 Author(s):
 [[Srinivasan Keshav]]
 Related:
-[[Three-Pass Approach]], [[Second Pass]], [[Third Pass]]
+[[Three-Pass Approach]]
 References:
-
-Link:
 https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf
 Date Accessed:
 2021-05-11
