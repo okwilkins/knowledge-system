@@ -77,11 +77,11 @@ Spend some time reflecting on what didn't go well and how you could do better ne
 ---
 ## References
 
-Title: [[Five Minute Journal - Daily Journal Techniques and Tips]]
+Title: Five Minute Journal - Daily Journal Techniques and Tips
 Author: [[Brain Sunter]]
 Link: https://briansunter.com/blog/five-minute-journal
 Accessed: 2021-09-18
 
 ---
 Tags:
-#journal, #mind, #writing
+#journal, #mind, #writing, #self-improvement

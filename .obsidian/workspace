@@ -9,6 +9,17 @@
         "state": {
           "type": "markdown",
           "state": {
+            "file": "Journal/2021-09-18.md",
+            "mode": "preview"
+          }
+        }
+      },
+      {
+        "id": "04fff00b5c51dbe5",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
             "file": "Five Minute Journal.md",
             "mode": "preview"
           }
@@ -76,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Five Minute Journal.md",
+                "file": "Journal/2021-09-18.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,15 +118,15 @@
   },
   "active": "268a241562297562",
   "lastOpenFiles": [
+    "Journal/2021-09-18.md",
     "Five Minute Journal.md",
-    "Untitled.md",
+    "030 Body and Mind MOC.md",
     "000 Home.md",
     "Journal/Untitled.md",
+    "020 Interests MOC.md",
+    "010 Science and Technology MOC.md",
+    "Untitled.md",
     "Three-Pass Approach.md",
-    "Literature Survey.md",
-    "First Pass.md",
-    "Second Pass.md",
-    "Third Pass.md",
-    "010 Science and Technology MOC.md"
+    "Literature Survey.md"
   ]
 }
