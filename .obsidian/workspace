@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Barcelona.md",
-            "mode": "source"
+            "file": "000 Home.md",
+            "mode": "preview"
           }
         }
       }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#paper",
+                "query": "tag:#MOC",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -76,7 +76,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Barcelona.md",
+                "file": "000 Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,15 +107,15 @@
   },
   "active": "34f991075124e0b3",
   "lastOpenFiles": [
+    "000 Home.md",
+    "Idea Emergence.md",
+    "Pasted image 20210918163113.png",
+    "Untitled.md",
     "Barcelona.md",
-    "Singapore.md",
-    "Zanvoort.md",
-    "F1 2020.md",
-    "F1.md",
-    "Short Shifting.md",
-    "020 Interests MOC.md",
-    "000 Index.md",
     "010 Science and Technology MOC.md",
-    "020 Interests.md"
+    "000 Index.md",
+    "What's An OLAP Cube.md",
+    "Zanvoort.md",
+    "Three-Pass Approach.md"
   ]
 }

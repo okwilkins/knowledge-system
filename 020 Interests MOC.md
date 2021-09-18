@@ -3,4 +3,4 @@
 
 ---
 Tags: #MOC, #interests
-Related: [[000 Index| Index]]
+Related: [[000 Home| Index]]
