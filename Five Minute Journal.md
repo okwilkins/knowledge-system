@@ -78,10 +78,12 @@ Spend some time reflecting on what didn't go well and how you could do better ne
 ## References
 
 Title: Five Minute Journal - Daily Journal Techniques and Tips
-Author: [[Brain Sunter]]
+Author: [[Brian Sunter]]
 Link: https://briansunter.com/blog/five-minute-journal
 Accessed: 2021-09-18
 
 ---
+Related:
+[[030 Body and Mind MOC| Body and Mind ]]
 Tags:
 #journal, #mind, #writing, #self-improvement
