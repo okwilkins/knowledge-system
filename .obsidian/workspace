@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Journal/2021-09-21.md",
+            "file": "Currently Reading/Machine Learning The High Interest Credit Card of Technical Debt.md",
             "mode": "preview"
           }
         }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Journal/2021-09-21.md",
+                "file": "Currently Reading/Machine Learning The High Interest Credit Card of Technical Debt.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,8 +118,8 @@
   },
   "active": "268a241562297562",
   "lastOpenFiles": [
-    "Journal/2021-09-21.md",
     "Currently Reading/Machine Learning The High Interest Credit Card of Technical Debt.md",
+    "Journal/2021-09-21.md",
     "Second Pass.md",
     "Three-Pass Approach.md",
     "First Pass.md",
