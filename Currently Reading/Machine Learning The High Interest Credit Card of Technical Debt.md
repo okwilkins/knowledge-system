@@ -43,6 +43,30 @@ The intro finished off with:
 > Paying down technical debt may initially appear less glamorous than research results usually reported in academic ML conferences. But it is critical for long-term system health and enables algorithmic advances and other cutting-edge improvements.
 
 ### Complex Models Erode Boundaries
+Strong [[Abstraction Boundries| abstraction boundries]] helps to create maintainable code which is easy to make isolated changes and improvements. It does this though encapsulation and modular design. Furthermore, these boundaries help to express the invariant and logical consistency of the information inputs and outputs form a given components. [[Machine Learning| ML]] erodes such boundries the very reason for a [[Machine Learning| machine learning]] system is precisely that:
+> desired behavior cannot be effectively implemented in software logic without dependency on external data
+
+#### Entanglement
+Machine learning libraries are tools for mixing data sources together. This makes isolation of improvements practically impossible from entanglement. If we have a system with features $x_1, ..., x_n$:
+- If the input distribution of $x_1$ were to change, the remaining $n - 1$ features may all change.
+- Adding a new feature $x_{n + 1}$ can cause similar changes.
+- Removing a feature $x_j$ will also do the same.
+- The same principle applies to [[Hyper-parameters| hyper paramters]].
+
+No features are ever really independent. The paper calls this the **CACE** principle: **C**hanging **A**nything **C**hanges **E**verything.
+ 
+ The paper suggests three strategies to mitigate such entanglement:
+ - Isolate models and serve ensembles.
+	 - This is useful when sub-problems decompose naturally or where the cost of maintaining separate models is outweighed by the benefits of enforced modularity.
+	 - The downside is that this can be unscalable in many large-scale settings and within a given model, the issues of entanglement may still be present.
+ - Develop methods of gaining deep insights into the behaviour of the model predictions.
+- Attempt to use more sophisticated regularization methods to enforce that any changes in prediction performance carry a cost in the objecting function used in training.
+	- A downside here is that this may add more debt via increased system complexity than is reduced via decreased entanglement.
+
+> The above mitigation strategies may help, but this issue of entanglement is in some sense innate to machine learning, regardless of the particular learning algorithm being used. In practice, this all too often means that shipping the first version of a machine learning system is easy, but that making subsequent improvements is unexpectedly difficult. This consideration should be weighed carefully against deadline pressures for version 1.0 of any ML system.
+
+#### Hidden Feedback Loops
+A system predicting (CTR) of headlines on a website likely relies on user clicks as training labels. This will in turn depend on previous predictions from the model. This leads to issues in analyzing system performance. As an example, if we have $x_{week}$ as a feature, reporting on the number of headlines a user has clicked on in the past week. If the CTR model has improved, it is likely a user will have clicked on more headlines. Furthermore, if the model is updated on new data at a later time, it may change its opinion of $x_{week}$. In this environment, the system will slowly change over time in time scales much longer than a week. These may not be visible in quick experiments. This will lead to added cost to even simple improvements as analysing the effect of a proposed change can be extremely difficult.
 
 Type:  
 #paper
