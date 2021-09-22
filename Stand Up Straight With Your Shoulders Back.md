@@ -22,6 +22,16 @@
 - This is more appropriate to its new, lowly position. Its original brain isn't sophisticated enough to manage the transformation from king to bottom dog without virtually complete dissolution and regrowth. 
 - [[Jordan Peterson| Peterson]] extends this to  the painful transformation of a serious defeat in romance or career.
 
+## Neurochemistry of Defeat and Victory
+- A lobster with high serotonin to octopamine ratio is much less likely to back down when challenged.
+- When a lobster that has just lost a battle is exposed to serotonin, it will stretch itself out, advance even on former victors and fight longer and harder.
+- A more staggering demonstrations of the evolutionary continuity of life on Earth, Prozac even cheers up lobsters.
+- High serotonin/low octopamine characterises the victor.
+- Less provocation is necessary to trigger an escape reflex in a defeated lobster.
+
+## The Principle of Unequal Distribution
+- Practically wherever you look, there exists a small minority possessing the majority. This is known as [[Price's Law]] and [[Pareto Principle]].
+
 
 ---
 Type:
