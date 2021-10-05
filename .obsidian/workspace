@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Stand Up Straight With Your Shoulders Back.md",
+            "file": "Journal/2021-10-05.md",
             "mode": "preview"
           }
         }
@@ -76,7 +76,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Stand Up Straight With Your Shoulders Back.md",
+                "file": "Journal/2021-10-05.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,15 +107,15 @@
   },
   "active": "712ade69ceae0edb",
   "lastOpenFiles": [
+    "Journal/2021-10-05.md",
+    "Journal/2021-09-22.md",
+    "Journal/Untitled.md",
+    "000 Home.md",
     "Stand Up Straight With Your Shoulders Back.md",
     "Currently Reading/Machine Learning The High Interest Credit Card of Technical Debt.md",
     "Machine Learning Black Boxes.md",
-    "Journal/2021-09-22.md",
     "Journal/2021-09-21.md",
     "Journal/2021-09-20.md",
-    "Journal/2021-09-19.md",
-    "Journal/2021-09-18.md",
-    "Journal/2021-09-21 1.md",
-    "Untitled.md"
+    "Journal/2021-09-19.md"
   ]
 }
