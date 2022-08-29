@@ -4,14 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "712ade69ceae0edb",
+        "id": "b0bbf0097742f60f",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Journal/2021-10-05.md",
-            "mode": "preview"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -76,7 +73,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Journal/2021-10-05.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,15 +101,15 @@
     "direction": "horizontal",
     "width": 308
   },
-  "active": "712ade69ceae0edb",
+  "active": "b0bbf0097742f60f",
   "lastOpenFiles": [
+    "Literature Survey.md",
+    "Five Minute Journal.md",
+    "000 Home.md",
+    "010 Science and Technology MOC.md",
+    "Currently Reading/Machine Learning The High Interest Credit Card of Technical Debt.md",
     "Journal/2021-10-05.md",
     "Journal/2021-09-22.md",
-    "Journal/Untitled.md",
-    "000 Home.md",
-    "Stand Up Straight With Your Shoulders Back.md",
-    "Currently Reading/Machine Learning The High Interest Credit Card of Technical Debt.md",
-    "Machine Learning Black Boxes.md",
     "Journal/2021-09-21.md",
     "Journal/2021-09-20.md",
     "Journal/2021-09-19.md"
