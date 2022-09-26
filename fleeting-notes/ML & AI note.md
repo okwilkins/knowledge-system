@@ -1,0 +1,134 @@
+# Bias
+The inability for an ML model to capture the true rel is called bias
+
+# Variance
+The difference in how well a model fits differing datasets is called variance
+
+# Decicsion Trees
+## Basic Concepts
+- milti data type ok
+- a question on a feature can be asked multiple times
+- numerica thresholds can be diff for the same feature
+- final classificaitons can be repeated
+- if statement is true, you go left
+- very top of tree is called root node/the root
+- internal nodes/branches are inbetween top and bottom
+	- branches have arrows pointing to them
+	-  AND arrows pointing away from them
+- leaves have arrows pointing to them but no pointing away
+
+## Building a Tree with Gini Impurity
+- First need to work out which feature makes the root
+	- do this based off which best predicts target var
+		- do this by making tree based off only "loves popcorn" to predict "Loves Song"
+	- If a **leaf** contains a mixture of correct **AND** incorrect predictions, then they are **IMPURE**
+	- To quantify the impurity of leaves you can use: **Gini Impurity**, **Entropy**, and **Information Gain**
+	- Gini Impurity for a leaf = 1 - (prob("yes") ^ 2 - prob("no") ^ 2)
+		- to work out toal gini impurity fpr the simple tree:
+			- = weigthed avg of gini impurities
+			- weigthed because a leaf may not represent the same number of people
+				- eg "loves popcorn? Yes? No?"
+	- For numeric data:
+		- sort by low to high
+		- calc avg value based of row below and current row
+		- then calc gini for each avg value
+			- this can be done e.g. avg val = 9.5
+			- root: "age < 9.5, loves song?"
+		- You then pick the root that represents num feature by the avg that = lowest gini
+	- You then pick the root by selecting the feature that has lowest gini!
+- So split based off: "loves soda?"
+	- Can we reduce gini of branch by splitting people that loved soda or Age < ??? ?
+	- Calc gini for each of the two questions
+	- Select lowest gini of the two: "age < 12.5?"
+- Can stop splitting based off if leaves are completly pure
+## How to Prevent Overfitting
+- Let say that leaf only has one person, can be hard to be sure that it does a good job of making preds
+	- could overfit the data
+- Can deal with this by:
+	- pruning
+	- can put limits on hwo trees grow by requiring 3 or more people per leaf
+
+# Regression Trees
+- use when you cant fit straight line to data
+- to work out output of leaf, just get avg of the values that sit in the leaf
+- building root:
+	- dosage < 3 -- 3 is avg of two values
+	- get avg of vals of < 3 and >= 3 (0 & 38.8)
+		- so tree will say: "Dosage < 3? If so, then 0, else 38.8."
+	- use sum of square residuals of all points (left and right) in the leaves to get qual of preds
+	- THEN, go to next two points e.g. "dosage < 5"
+	- Select smallest sum of squared residuals
+		- root = "dosage < 14.5?"
+	- You then for the left and right branch can do the same again on the samller subset of values
+	- you then need to do this for the other features in data
+	- compare SSR for each feature that makes the root node
+	- to the branch down, you just do the same as before but it's filtered on e.g. "Age > 50"
+
+# How to Prune Regression Trees
+- there are several methods of prunin
+	- this is on **Cost Complexity Pruning** or **Weakest Link Pruning**
+
+use this for overfitting and variance
+let say we have test/train data and the model is overfit to test data
+
+- one way to reduce overfitting is by reducing the number of leaves
+	- replace the split with a leaf that is avg of a larger num of observations
+		- e.g. remove two leaves of branch and replace branch by leaf
+- now the sub-tree does better at predicting test data but worse at train
+
+how do we decide which sub-tree to use???
+
+- first tep of cost complex pruning is to calc SSR of each pruned sub-tree for trian data
+	- calc SSR for each leaf
+	- then add up all SSR for all leaves
+- each time a branch/leaf is removed, the SSR for the sub-tree will get bigger
+	- not a suprise tho ofc
+- how comapre trees?
+	- CCP based on:
+		- tree score = SSR + alpha (tree complexity pen, find using cross validation) * T (num of leaves or terminal nodes)
+		- do this for all sub-trees
+		- pick lowest tree score sub-tree
+
+- how to build pruned regression tree?
+	- first use ALL data build full sized reg tree
+	- now increase alpha till the sub-tree with one branch removed, gives lower tree score compared to full sized tree
+	- keep doing this with smaller and smaller sub-trees
+		- recording alpha values for each
+	- in the end, different vals for alpha give use a sequence of tree from full sized to just a leaf
+		- e.g. 0, 10k, 15k, 22k
+	- now divide into train and test
+		- using just train data, use the alpha values we found on full tree and a sequaence of subtrees that min the tree score
+		- now calc SSR of each new tree for test data and pick alpha based off lowest SSR
+	- repeat using cross-validation
+		- pick alpha that on avg gave lowest SSR with the testing data in each cross fold
+
+# Random Forests
+
+Step 1: Create a "**bootstrapped**" dataset
+- Randomly sample dataset so that we have same size as orginal dataset
+	- can pick same sample more than once
+
+Step 2: Create decision tree using boostrapped dataset but only use a random subset of features at each step
+- e.g. only consider 2 cols at each step
+- there can be an optimal num of cols
+
+- once root has been determined out of 2 cols, remove that col from data to focus on ALL of the remaining cols
+- for next branch, randomly select 2 cols of the remaining cols
+	- in the next levels of branches, you can select the col that was removed for the parent node
+
+Now go back to step 1 and repeat bootstrap and build tree again
+
+How to use forest?
+- all trees vote and pick answer based off all the trees, 5 Trues and 1 False = True classification
+
+**B**oostrapping the data plus the **agg**regate to make a decision is called **Bagging**
+
+We can have **Out-Of-Bag-Dataset**, which are all the samples that did not make it into the bootstrapped data
+- typically 1/3 of og data doesn't make it
+- run data through tree and check if it estimate correct
+- do this out-of-bag sample through all of the other trees that were built without it
+- do the same thing for all of the other out of bag samples for all of the trees
+
+The proportion of out-of-bag samples that were incorrectly calssifies is the **Out-Of-Bag Error**
+
+To tune the number of cols selected for each step, use **Out-of-bag error**
