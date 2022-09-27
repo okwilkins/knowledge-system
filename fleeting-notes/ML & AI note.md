@@ -132,3 +132,79 @@ We can have **Out-Of-Bag-Dataset**, which are all the samples that did not make 
 The proportion of out-of-bag samples that were incorrectly calssifies is the **Out-Of-Bag Error**
 
 To tune the number of cols selected for each step, use **Out-of-bag error**
+
+# Adaboost
+
+Trees are usually just a root and two leaves
+- This is called a stump
+- They are not great at making accurate classifications
+- "*weak learners*"
+
+In a forest of stumps, some stumps get more say in final classification than others
+- this is in contrast with RF
+
+Order is important
+- The error that the first stump makes, influences how the second stump is made, etc etc
+- In RF the trees are independently generated
+
+First give each row in dataset a sample weight
+- To begin with, this will be 1 / N
+
+Then create root node in the same way as a decision tree
+
+The the **total error** will determine the **amount of say** a stump has:
+- amount of say = 0.5 * log((1 - total error) / total error)
+- if total error = 0.5, say = 0
+- if total error apporaches -1 (you would just do opposite of what tree says) or 1, say increases
+- if total error = 1, the equation freaks out (log(0)), so a small error term is added to correct for this
+
+To update the rows that the stump incorrectly guesses:
+- new sample weight = sample weight * e ^ (amount of say)
+- So if stump has a lot of say and gets guess wrong, sample weight will drastically increase
+
+If the stump gets the guess correct, update the sample weight:
+- new sample weight = sample weight * e ^ -(amount of say)
+- if amount of say is large, then the row weight will go down a lot
+
+After all weights have been updated, you need to nomalise the weights so that they add up to 1
+- do this by dividing each weight by the sum of the weights
+
+In theory, the new sample weights could be used to calc a weighted gini index for a new tree
+
+In practice, you generate rng nums between 0 and 1, selecting the row that it falls on base don the cum sample weights
+
+Do this as many times as you want!
+
+How do the trees make predicition?
+- Add up the amount of say of each True and False preds
+- The one with more total say will be the pred
+
+
+# Gradient Boosting Part 1: Regression Main Ideas
+
+Grad boost very similar to AdaBoost
+
+When starting, grad boost creates a single leaf that is the avg of the target var
+Then grad bost builds a tree, that is based on the errors of the previous tree.
+- This tree is larger than stump but still restricts the size of the tree
+- In practice, people ofen set the num of leaves to be between 8 and 32
+
+Grad boost will scale each tree by a fixed amount, unlike AdaBoost (amount of say)
+It will then build tree based of the errors of the previous tree.
+It will then build trees in this fashon till made num of trees asked for or aditional trees fail to improve fit.
+
+1. Calc avg of the target feature as first 'tree'/leaf
+2. Build tree on erorrs of first tree: error = obvs - pred, this is called a **pseudo residual**. The pseudo part is a reminder that we are doing grad boost, not linear reg.
+3. Now use input vars to predict the residuals to build tree. A leaf of this tree may pointwards two residuals. If this happens, get avg of residuals on leaf.
+4. Now combine original leaf with the new tree for pred. Effectively this new tree 'corrects' for the error of the og leaf. After doing this once, the bias will be low but varience high (overfit), so there is a learning rate to correct for this. Multiple learning rate by new tree's residual pred. Between 0 and 1. This results in a small step in the right direction. Taking lots of small steps in the right direction results in lower varience.
+5. Calc psuedo residuals again based of new preds and do the same.
+6. Keep doing this until num trees reached or the sum of residuals do not significantly decrease.
+
+
+
+
+
+
+
+
+
