@@ -179,6 +179,66 @@ How do the trees make predicition?
 - Add up the amount of say of each True and False preds
 - The one with more total say will be the pred
 
+# Least Squares and Linear Regression
+
+1. Draw line through data
+2. Sum pred - obvs for all points
+	1. Square each term in sum to negatate large obvs vs pred
+	2. This is **sum of squared residuals**
+
+$y = ax + b$ 
+We want to find the optimal vaues for a and b so that the sum of squared residuals is minimised
+Since we want the line that will give us the smallest sum of squares, this is called ***least squares*** 
+
+Plot graph of roration of line vs SSR and take derivative of the function
+Best point is where the derivative is 0
+
+# Gradient Descent
+Can be used to optimise least squares like in notes above!
+For: $y = ax + b$
+start with least squares estimate for the slope a
+we use gradient descent to find optimatal value for b
+
+set b = 0, any number will do
+calc SSR
+- NOTE: the SSR is a type of **loss function**
+
+Keep changing the intercept and plot a graph of intercept vs SSR
+- Inefficent way of doing this would be to calc lots and lots of points
+- Gradient descent makes this way more efficent
+	- Does a few calcs when far from the optimal solution
+	- increases the number of calcs, close to the optimal value
+- You can derive an equation for a line that describes the SSR
+- Determine derivative of the function
+- Then take steps towards min value approaches derivative = 0
+	- This is v useful because get around times where it's impossible for derivative = 0
+	- The size of the step should be dependant on the size of the derivative
+	- This is determined by a **step size** called the
+		- Mutiply the derivative by a small number called a **learning rate**, the combination of these two is the step size
+	- So in this case, the new intercept = old intercept - step size
+	- This process repeats itself
+	- It will stop when the step size is very close to 0
+
+How to do grad descent for both a and b?
+- Take derivative with respect to the intercept also do the same with respect to the slope
+	- When you have 2 or more derivatives of the same function, they are called a **gradient**
+	- This is why the algorithm is called **gradient descent**!
+- Pick rando number for intecept and slope
+	- Gives 2 SSRs
+- Calc step size for both
+- Adjust intercept and slope by step size
+
+In general:
+1. Take the derivative of the **Loss Function** for each parameter in it. Meaning take the **Gradient** of the **Loss Function**.
+2. Pick rando values for all parameters.
+3. Plug param values into the gradient
+4. Calc step size
+5. calculate new params
+6. Go back to step 3 and repeat till step size small or max num of steps reached
+
+For a lot of data points, this can take long time
+So, **stochastic gradient descent** that uses a rando selected  subset of the data at every step, rather than the full dataset
+
 
 # Gradient Boosting Part 1: Regression Main Ideas
 
