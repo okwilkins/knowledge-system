@@ -1,3 +1,64 @@
+Bias and Variance
+- [x] https://www.youtube.com/watch?v=EuBBz3bI-aA
+
+
+General Linear Models
+- [x] https://www.youtube.com/watch?v=nk2CQITm_eo
+https://www.youtube.com/watch?v=zITIFTsivN8
+https://www.youtube.com/watch?v=NF5_btOaCig (Linear Models for T-Tests and ANOVA)
+https://youtu.be/2UYx-qjJGSs
+
+
+Least Squares Linear Regression
+- [x] https://www.youtube.com/watch?v=PaFPbb66DxQ
+
+
+Odds and Log(Odds)
+- [x] https://www.youtube.com/watch?v=ARfXDSkQf1Y
+https://www.youtube.com/watch?v=8nm0G-1uJzA
+
+
+Maximum Likelihood
+- [x] https://www.youtube.com/watch?v=XepXtl9YKwc
+
+
+Logistic Regression
+- [x] https://www.youtube.com/watch?v=yIYKR4sgzI8
+https://www.youtube.com/watch?v=vN5cNN2-HW
+https://www.youtube.com/watch?v=BfKanl1aSG0
+
+Decision Trees
+- [x] https://www.youtube.com/watch?v=_L39rN6gz7
+- [x] https://www.youtube.com/watch?v=g9c66TUylZ4
+- [x] https://www.youtube.com/watch?v=D0efHEJsfHo
+
+
+Random Forests
+- [x] https://www.youtube.com/watch?v=J4Wdy0Wc_xQ
+
+
+AdaBoost
+- [x] https://www.youtube.com/watch?v=LsK-xG1cLYA
+
+
+Gradient Boosting
+- [x] https://www.youtube.com/watch?v=3CC4N4z3GJ
+- [x] https://www.youtube.com/watch?v=2xudPOBz-vs
+https://www.youtube.com/watch?v=jxuNLH5dXCs
+https://www.youtube.com/watch?v=StWY5QWMXCw
+
+
+Regularization
+https://www.youtube.com/watch?v=Q81RR3yKn3
+https://www.youtube.com/watch?v=NGf0voTMlcs
+
+
+XGBoost
+https://www.youtube.com/watch?v=OtD8wVaFm6
+https://www.youtube.com/watch?v=8b1JEDvenQU
+https://www.youtube.com/watch?v=ZVFeW798-2I
+https://www.youtube.com/watch?v=oRrKeUCEb
+
 # Bias
 The inability for an ML model to capture the true rel is called bias
 
@@ -324,10 +385,34 @@ No consensus on what is best, so people just mix and match:
 # Logistic Regression
 - Predicts if something is True or False
 - Fits an S shaped logistic function
-- Test to see if a variable's effect on the prediction is significantly differernt from 0
+- Test to see if a variable's effect on the prediction is significantly different from 0
 	- If not, it means the variable isnot helping the prediction
 	- This is called Wald's test
 - Instead of using SSR and R^2 it uses ***maximum likelihood***
+- Logistic Regression is a specific type of **Generalised Linear Model** (**GLM**)
+
+Continuous values:
+Because with logistic regression, the y-axis is confined to probability values between 0 and 1
+- solve problem by transforming to the log odds, so like with linear regression the y-axis can go from $-\infty$ to  $+\infty$
+
+So we use the **logit function**: $\log{\frac{p}{1 - p}}$
+- So all values that are true (1) -> $\infty$
+- All values that are false (0) -> $-\infty$
+
+Take example logisitic regression line: $y = -3.48 + 1.83\times weight$
+So the first coefficient is the y-axis intercept
+- when weight (x-axis) = 0, then log(odds of obesity) = -3.476
+	- In other words, if you dont weigh anything, the odds are against you being obese!! Duh!
+- The slope: for every one unit of weight gains, the log(odds of obesity)  increases by 1.825
+
+Descrete variable:
+
+***Need to come back to this (2nd vid for logistic regression)***
+
+
+# Linear Models for T-Tests and ANOVA
+***Need to come back to this***
+
 
 # Gradient Descent
 Can be used to optimise least squares like in notes above!
@@ -401,9 +486,11 @@ It will then build trees in this fashon till made num of trees asked for or adit
 Gradient boost is called gradient boost because the residual is the **Gradient** that comes from **Gradient descent**.
 
 # Gradient Boost: Classification Main Ideas
+***Need to come back to this!***
 
 
-
+# Regularization
+- Another way of saying desensitisation (lol)
 
 
 
