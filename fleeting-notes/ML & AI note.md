@@ -233,7 +233,20 @@ You can also use the sums of squares to make the same calc:
 $R^2 = \frac{SS(mean) - SS(fit)}{SS(mean)}$
 
 Adding terms will never reduce $R^2$!
+This is because lesat-sqaures would make the offending term(s) go to 0
+- Cause any term that makes SS(fit) worse to be multiplied by 0
+- However, the more stupid paramters added to the equation, the more chance there for random events to result in a better $R^2$
+- Because of this, people report an "adjusted" $R^2$ value that in essence, scales R^2 by the number of parameters
 
+What if we had only 2 measurements however?
+- SS(fit) = 0 => R^2 = 100%
+- Any two random points would give exact same thing, doesnt mean anything
+- So need a stats test to prove it's significant
+
+The p-value for R^2 comes from something called F:
+- F = the variation in mouse size explained by weight / the variation in mouse size not explained by weight
+- $F = \frac{SS(mean) - SS(fit) / (p_{fit} - p_{mean})}{SS(fit) / (n - p_{fit})}$
+- p are the degrees of freedom
 
 
 # Gradient Descent
