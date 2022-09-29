@@ -244,10 +244,18 @@ What if we had only 2 measurements however?
 - So need a stats test to prove it's significant
 
 The p-value for R^2 comes from something called F:
-- F = the variation in mouse size explained by weight / the variation in mouse size not explained by weight
+- F = the variation explained by the extra parameters in the fit / the variation not explained by the extra parameters in the fit
 - $F = \frac{SS(mean) - SS(fit) / (p_{fit} - p_{mean})}{SS(fit) / (n - p_{fit})}$
 - p are the degrees of freedom
+- Why divide SS(fit) by $n - p_{fit}$ instead of just n?
+	- The more params you have in your equation, the more data you need to estimate them
+	- For example, you only need two points to estimate a line, but you need 3 points to estimate a plane
+- If the fit is good F = large num / small num
 
+To calc p-value:
+- You could gen histogram from lots of random datasets and then see where you f-score for the dataset sits
+- What is more common is to generate an F-dstribution based off a line: $(p_{mean} - p_{fit}) = 1$, $(n - p_{fit}) = 10$
+	- the number of degrees of freedom determines the shape of the line
 
 # Gradient Descent
 Can be used to optimise least squares like in notes above!
