@@ -179,7 +179,7 @@ How do the trees make predicition?
 - Add up the amount of say of each True and False preds
 - The one with more total say will be the pred
 
-# Least Squares and Linear Regression
+# Least Squares Linear Regression
 
 1. Draw line through data
 2. Sum pred - obvs for all points
@@ -192,6 +192,49 @@ Since we want the line that will give us the smallest sum of squares, this is ca
 
 Plot graph of roration of line vs SSR and take derivative of the function
 Best point is where the derivative is 0
+
+# Linear Regression
+Main ideas:
+1. Use least-squares to fit a line to the data
+2. Calculate $R^2$
+3. Calculate a p-value for $R^2$
+
+Look above for notes on least-squares
+
+$R^2$:
+Example:
+- First shift all data to y-axis
+	- We are only interested in y-axis feature
+- Then calculate avg. y data
+	- Sum the squared resdiduals
+	- We call this SS(mean) -> "sum of squares around the mean"
+		- SS(mean) = (data - mean)^2
+	- Variation around the mean = (data - mean) ^ 2 / n
+		- Var(mean) = SS(mean) / n
+		- We can think of variance as the average sum of squares per e.g. "mouse"
+
+Now apply this to the line of best fit:
+- SS(fit) = (data - line) ^ 2
+- Var(fit) = SS(fit) / n
+- Can think of Var(fit) as the avg SS(fit) for each mouse
+
+In general: Variance(something) = sum of squares / the number of those things = average sum of squares
+
+There is less variation around the line that we fit by least-squares
+- We can say that some for the variation in mouse size is "explained" by taking mouse weight into account
+
+***So $R^2$ tells up how much of the variation in mouse size can be explained by taking mouse weight into account.***
+
+$R^2 = \frac{Var(mean) - Var(fit)}{Var(mean)}$
+
+Example: *$R^2$ = 0.6 = 60%: "There is a 60% reduction in variance when we take the mouse weight into account"* or *"mouse weight explains 60% of the variation in mouse size"*.
+
+You can also use the sums of squares to make the same calc:
+$R^2 = \frac{SS(mean) - SS(fit)}{SS(mean)}$
+
+Adding terms will never reduce $R^2$!
+
+
 
 # Gradient Descent
 Can be used to optimise least squares like in notes above!
@@ -240,7 +283,7 @@ For a lot of data points, this can take long time
 So, **stochastic gradient descent** that uses a rando selected  subset of the data at every step, rather than the full dataset
 
 
-# Gradient Boosting Part 1: Regression Main Ideas
+# Gradient Boosting: Regression Main Ideas
 
 Grad boost very similar to AdaBoost
 
@@ -254,11 +297,18 @@ It will then build tree based of the errors of the previous tree.
 It will then build trees in this fashon till made num of trees asked for or aditional trees fail to improve fit.
 
 1. Calc avg of the target feature as first 'tree'/leaf
-2. Build tree on erorrs of first tree: error = obvs - pred, this is called a **pseudo residual**. The pseudo part is a reminder that we are doing grad boost, not linear reg.
+	1. Better way: $F_{0}(x) = \arg \max_{\gamma}\sum_{i=1}^{n}L(y_{i}, \gamma)$, $L$ is loss func
+	2. Either find best value via grad descent or if ez derivative to solve for 0, do that
+2. Build tree on errors of first tree: error = obvs - pred, this is called a **pseudo residual**. The pseudo part is a reminder that we are doing grad boost, not linear reg.
 3. Now use input vars to predict the residuals to build tree. A leaf of this tree may pointwards two residuals. If this happens, get avg of residuals on leaf.
 4. Now combine original leaf with the new tree for pred. Effectively this new tree 'corrects' for the error of the og leaf. After doing this once, the bias will be low but varience high (overfit), so there is a learning rate to correct for this. Multiple learning rate by new tree's residual pred. Between 0 and 1. This results in a small step in the right direction. Taking lots of small steps in the right direction results in lower varience.
 5. Calc psuedo residuals again based of new preds and do the same.
 6. Keep doing this until num trees reached or the sum of residuals do not significantly decrease.
+
+Gradient boost is called gradient boost because the residual is the **Gradient** that comes from **Gradient descent**.
+
+# Gradient Boost: Classification Main Ideas
+
 
 
 
