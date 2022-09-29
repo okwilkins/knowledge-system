@@ -244,6 +244,7 @@ What if we had only 2 measurements however?
 - So need a stats test to prove it's significant
 
 The p-value for R^2 comes from something called F:
+- Tells you how reliable the fit is!
 - F = the variation explained by the extra parameters in the fit / the variation not explained by the extra parameters in the fit
 - $F = \frac{SS(mean) - SS(fit) / (p_{fit} - p_{mean})}{SS(fit) / (n - p_{fit})}$
 - p are the degrees of freedom
@@ -256,6 +257,77 @@ To calc p-value:
 - You could gen histogram from lots of random datasets and then see where you f-score for the dataset sits
 - What is more common is to generate an F-dstribution based off a line: $(p_{mean} - p_{fit}) = 1$, $(n - p_{fit}) = 10$
 	- the number of degrees of freedom determines the shape of the line
+
+# Maximum Likelihood
+The goal of maximum likelihood is the find the optimal way to fit a distribution to the data.
+
+Example:
+- Take normal distribution
+- fit a bell curve with centre far from avg of points
+- most of the points have a low probability or "likelihood" of being observed in the places they are
+- if you shift the curve over so that its mean was the same as the average?
+	- the likelihood of observing the points would be high
+- if you kept moving it over, the likelihood of observing the points would be low again
+- with the best mean found, you need to do the same for std. dev.
+
+probability vs likelihood:
+- likelihood specifically refers to this situation here; you are trying to find the optimal value for the mean or std dev for a dist given a bunch of observed measurements
+
+
+# Odds and Log(Odds)
+"The odds in favour of my team winning the game are 1 to 4"
+
+odds are not probability
+- they are the ratio of something happening vs to something not happening
+- prob is the ratio of something happening vs everything happening
+
+prob of something / prob of not something is the same as the odds
+
+- odds of team losing go from 0 to 1 (1 : 32 => 0.03125)
+- odds of team winning go from 1 to $\infty$ (32 : 3 => 10.67)
+- this makes it difficult to compare the odds of winning vs losing
+- taking the log of the odds helps with this
+
+the log of the ratio of probs is called the ***logit function*** and formthe basis for logistic regression
+
+log(odds) are very useful for solving certain stats problems
+- specifically ones where we are trying to determin probs about win/lose, yes/no or true/false questions
+- plotting dist of win : lose of many things will result in normal dist
+
+| Has Cancer/Has mutated gene | Yes | No  |
+|-----------------------------|-----|-----|
+| Yes                         | 23  | 117 |
+| No                          | 6   | 210 |
+
+Odds ratio: $\frac{23 / 117}{6 / 210} = \frac{0.2}{0.03} = 6.88$
+This means that the odds are 6.88 times greater that someone with the mutated gene will also have cancer
+Hence log ratio: $1.93$
+
+- The odds ratio and log of the odds ratio are like R-squared; they indicate a relationship between two things
+- Larger values mean that the mutated gene is a good predictor of cancer
+- Values close to 0 are bad: $log(1) = 0$
+	- $log(0.001) = -6.91$ (so do opposite) (for every game I win someone else wins 1,000 times)
+	- $log(100) = 4.6$ (for every game I lose, I win 100)
+	- hence these are good predictors
+
+3 ways to determine if an odds ratio is statistically signficant:
+- Fisher's Exact Test
+- Chi-Square Test
+- The Wald test
+No consensus on what is best, so people just mix and match:
+- Some people use Fisher's/Chi-Square test to get p-values
+- Wald Test to calculate a confidence interval
+- Others use just Wald Test for confidence interval/p-values
+- So need to check what is best for your field
+
+
+# Logistic Regression
+- Predicts if something is True or False
+- Fits an S shaped logistic function
+- Test to see if a variable's effect on the prediction is significantly differernt from 0
+	- If not, it means the variable isnot helping the prediction
+	- This is called Wald's test
+- Instead of using SSR and R^2 it uses ***maximum likelihood***
 
 # Gradient Descent
 Can be used to optimise least squares like in notes above!
