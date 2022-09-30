@@ -49,12 +49,12 @@ Gradient Boosting
 
 
 Regularization
-- [ ] https://www.youtube.com/watch?v=Q81RR3yKn30
-- [ ] https://www.youtube.com/watch?v=NGf0voTMlcs
+- [x] https://www.youtube.com/watch?v=Q81RR3yKn30
+- [x] https://www.youtube.com/watch?v=NGf0voTMlcs
 
 
 XGBoost
-- [ ] https://www.youtube.com/watch?v=OtD8wVaFm6E
+- [x] https://www.youtube.com/watch?v=OtD8wVaFm6E
 - [ ] https://www.youtube.com/watch?v=8b1JEDvenQU
 - [ ] https://www.youtube.com/watch?v=ZVFeW798-2I
 - [ ] https://www.youtube.com/watch?v=oRrKeUCEb
@@ -550,8 +550,170 @@ Ridge does better then most of the variables are useful
 
 # XGBoost: Regression
 
+Has lots of parts but are simple:
+1. Gradient boost(ish) (wont be covered as done before)
+2. Regularization (wont be covered as done before)
+3. A unique regression tree
+4. Approximate greedy algorithm
+5. Weighted quantile sketch
+6. Sparsity-aware split finding
+7. Parallel learning
+8. Cache-aware access
+9. Blocks for out-of-core computation
 
 
+XGBoost was designed to be used with large, complicated datasets
+
+## Unique Regression Tree
+First step in fitting XGBoost to the training data is to make an initial prediction
+- This prediction can be anything but by default it is 0.5, regardless if it's regression or classification
+
+Like with gradient boost, XGBoost fits a regression tree to the residuals
+- However, XGBoost uses a unique regression tree that the vid calls XGBoost tree
+There are many ways this tree can be built, but this is the most common way for regression
+
+1. Each tree starts with a single leaf, all residuals go to the leaf
+2. Calculate a quality score or similarity score for the residuals
+	1. Similarity score = SSR / (num residuals + $\lambda$)
+	2. This similarity score is a simplification of second order Taylor approximation of the loss function described in grad boost
+	3. Also, the lambda here will just be for L2 regularisation
+	4. L1 will make the sim score simplify to something different
+3. Now the question is whether or not we can do a better job clustering similar residuals if we split them into two groups
+	1. Focus on the two points that are smallest (x-axis)
+	2. Get avg value
+	3. Make a split based off the avg value
+	4. Calc similarity score for both leafs
+4. Now need to quanitify how much better the leaves cluster similar resdiuals than the root, do this by calculating the gain
+	1. $gain = {left}_{similarity} + {right}_{similarity} - {root}_{similarity}$
+5. Now shift the threshold over so that it is the avg of th next two observation
+	1. More gain is good, is better at splitting the residuals into clusters of similar values
+6. Get best tree based of thresholds
+7. Try to split leaves further, the root in the gain calc refers to the parent node of the leaves
+8. Keep going till at max depth (default is 6)
+
+How to prune this tree?
+- Pruned based on its gain values
+- Start with a number, for example, 130
+	- This is called $\gamma$ gamma
+	- Then calc the difference between the gain asscociated with the lowest branch in the tree and gamma: $gain - \gamma$
+		- if the difference is positive then the branch is not removed, if it is neg then remove
+		- once you find a pos difference, then stop pruning
+	- This can also remove the root of the tree, leaving just the original prediction, which is pretty extreme pruning
+
+The regularization term:
+- This will decrease similarity scores
+- This will tend to stop the trees getting so large as it's harder for a branch to have a lower sim score than its parent
+- This also can make the pruning more agressive as $\gamma$ is more likely to be larger than the gain
+- In the case of gain being less than 0, setting gamma = 0 will not turn off pruning
+
+Output value = sum of residuals / (num of residuals + $\lambda$)
+- This refers to the output value for each leaf
+- Pretty similar to the similarity score except it's not SSR
+- This also means that lambda will reduce the amount a leaf will contribute to a prediction
+	- So will reduce the sensistivity to an indivual observation
+
+Like with gradient boost, there is a learning rate that scales the tree
+- XGboost calls this learning rate: $\epsilon$ (eta but this is epsilon?)
+	- Default value is 0.3
+
+So output = inital pred + learning rate * output value for the leaf that the point goes down to
+
+Now build new tree based on the new residuals
+
+The two reasons to use XGBoost are also the two goals of the project:
+- Execution Speed
+- Model Performance
+
+**Sparse Aware**: implementation with automatic handling of missing data values.
+**Block Structure**: to support the parallelization of tree construction.
+**Continued Training**: so that you can further boost an already fitted model on new data.
+
+## Approximate Greedy Algorithm
+When fitting a tree to the residuals
+- was done by calculating the similarity scores and the gain for each possible threshold
+- the threshold with the largest gain is the one XGBoost uses
+- The decision to use the threshold that gives the largest gain is made without worrying about how the leaves will be split later
+- This means XGBoost uses a greedy algorithm
+- In other words, since XGBoost uses a greedy algorithm, it amkes a decision without looking ahead to see if it is the absolute best choice in the long term
+- If it did not use this algo, it woukld postpone making a final decision about this threhold, until after trying different thresholds in the leaves to see how things played out in the long run
+- So, the greedy algo makes XGBoost a tree relatively quickly
+
+When you have lots of data points, the greedy algo still has to look through every possible threshold
+- on top of that, you'd have to do this for every other feature in your data
+- this would take forever
+- this is where the approximate greedy algo comes in
+
+Instead, divide the data into quantiles and use that for thresholds instead
+By default, XGBoost uses "about" 33 quantiles
+- The "about" comes from the Parallel Learning an Weighted Quantile Sketch
+
+## Parallel Learning & Weighted Quantile Sketch
+Get your data and split it into small pieces and putting the peices on different computers on a network
+The quantile sketch algorithm combines the alues form each computer to make an approximate histogram
+Then the approximate histogram is used to calculate approximate quantiles
+The Approximate greedy algorithm uses these approximate quantiles
+
+What about the weighted part?
+
+Usually, quantiles are set up so that the same number of observations are in each one
+- In contrast, with weighted quantiles, each observation has a corresponding weight
+- The sum of the weights are the same in each quantile
+- The weights are derived from the cover metric
+	- the weight for each observation is the 2nd derivative of the loss function, what we are referring to as the Hessian (not Gradient)
+- This means for regression the weights are all equal to 1
+	- This means that the the weighted quantiles are just like normal quantiles and contain an equal number of observations
+- In constrast, for classification: weight = previous prob i * (1- previous prob i)
+
+
+Only uses the approx greedy algo, parallel learning and the weighted quantile sketch then the training data is huge
+
+When the trainin set is not so large, a normal greedy algo is used
+
+## Sparsity-Aware Split Finding
+Have a few missing values
+- Even with this, we can just use the base leaf to calculate the residuals for rows with missing data
+
+split the data into two table
+- one with all e.g. dosage values
+- other with all values without dosage values
+
+Table with dosage values:
+- sort rows low to high
+- calc candidate thresholds
+
+The first gain value, gain left, is calculated by putting all of the resdiuals with missing dosage values into the leaf on the left, save gain
+Do the same for leaf on the right, save gain
+
+Do this for all candidate thresholds
+You then pick the tree with highest gain
+
+So example, Dosage < 15.5, going left will be the default path for all future observations that are missing dosage values
+
+## Cache-Aware Access
+This is where XGBoost starts to get super nitty gritty
+
+Basic idea:
+- Inside computer we have:
+	- CPU
+	- CPU has a small amount of cache memory -- CPU can use this mem faster than any other memory on the computer
+	- CPU attatched to large amount of main memory, larger but slower than cache
+	- HDD, very slow but largest
+
+XGBoost puts the gradients and Hessians in the cache, so that is can rapdily calculate similarity scores and output scores
+
+## Blocks for Out-of-Core Computation
+When the dataset is too large for the cache and main memory, then some of it must be stored on the HDD
+
+Because reading and writing data to the HDD is super slow, XGBoost tries minimising these actions by compressing the data
+
+When there is more than one HDD, XGBoost uses a databse technique called sharding to speed up disk access
+- The when the CPU needs data, both drives can be reading data at the same time
+
+---
+
+Finally, XGHBoost can speed things up by allowing you to build each tree with only a random subset of the data.
+
+AND, can build trees by only looking at a random subset of features when deciding how to split the data.
 
 
 
