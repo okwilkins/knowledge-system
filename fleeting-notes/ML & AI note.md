@@ -4,9 +4,9 @@ Bias and Variance
 
 General Linear Models
 - [x] https://www.youtube.com/watch?v=nk2CQITm_eo
-https://www.youtube.com/watch?v=zITIFTsivN8
-https://www.youtube.com/watch?v=NF5_btOaCig (Linear Models for T-Tests and ANOVA)
-https://youtu.be/2UYx-qjJGSs
+- [ ] https://www.youtube.com/watch?v=zITIFTsivN8
+- [ ] https://www.youtube.com/watch?v=NF5_btOaCig (Linear Models for T-Tests and ANOVA)
+- [ ] https://youtu.be/2UYx-qjJGSs
 
 
 Least Squares Linear Regression
@@ -24,8 +24,8 @@ Maximum Likelihood
 
 Logistic Regression
 - [x] https://www.youtube.com/watch?v=yIYKR4sgzI8
-https://www.youtube.com/watch?v=vN5cNN2-HW
-https://www.youtube.com/watch?v=BfKanl1aSG0
+- [ ] https://www.youtube.com/watch?v=vN5cNN2-HW
+- [ ] https://www.youtube.com/watch?v=BfKanl1aSG0
 
 Decision Trees
 - [x] https://www.youtube.com/watch?v=_L39rN6gz7
@@ -44,20 +44,20 @@ AdaBoost
 Gradient Boosting
 - [x] https://www.youtube.com/watch?v=3CC4N4z3GJ
 - [x] https://www.youtube.com/watch?v=2xudPOBz-vs
-https://www.youtube.com/watch?v=jxuNLH5dXCs
-https://www.youtube.com/watch?v=StWY5QWMXCw
+- [ ] https://www.youtube.com/watch?v=jxuNLH5dXCs
+- [ ] https://www.youtube.com/watch?v=StWY5QWMXCw
 
 
 Regularization
-https://www.youtube.com/watch?v=Q81RR3yKn3
-https://www.youtube.com/watch?v=NGf0voTMlcs
+- [ ] https://www.youtube.com/watch?v=Q81RR3yKn30
+- [ ] https://www.youtube.com/watch?v=NGf0voTMlcs
 
 
 XGBoost
-https://www.youtube.com/watch?v=OtD8wVaFm6
-https://www.youtube.com/watch?v=8b1JEDvenQU
-https://www.youtube.com/watch?v=ZVFeW798-2I
-https://www.youtube.com/watch?v=oRrKeUCEb
+- [ ] https://www.youtube.com/watch?v=OtD8wVaFm6E
+- [ ] https://www.youtube.com/watch?v=8b1JEDvenQU
+- [ ] https://www.youtube.com/watch?v=ZVFeW798-2I
+- [ ] https://www.youtube.com/watch?v=oRrKeUCEb
 
 # Bias
 The inability for an ML model to capture the true rel is called bias
@@ -489,8 +489,66 @@ Gradient boost is called gradient boost because the residual is the **Gradient**
 ***Need to come back to this!***
 
 
-# Regularization
+# Regularization: Ridge (L2) Regression
 - Another way of saying desensitisation (lol)
+
+Use Linear regression aka least squares:
+- example: has intercept and slope
+	- training data has 2 points
+	- testing has 8
+	- SSR = 0 for training, for testing is high
+		- high varience (overfit to training)
+- Main idea behind ridge regression is to find a new line that doesn't fit the training data as well
+	- introduce a small amount of bias
+	- in return we get a significant drop in variance
+
+Example: size = intercept + slope * Weight
+Lin reg minises: SSR
+Ridge regression tries to minimises: SSR + $\lambda \times {slope}^2$
+- The added tern adds a penalty to the traditional least squares method
+
+So when the slope of the line is steep, then the prediction for size is very sensitive to relatively small changes in weight
+So predictions made with the ridge regression line are less sensistive to weight than the least squares line
+The large lambda, the slope get asymptotically close to 0
+To find the value for lambda, try typically 10-fold cross validation to determine which one results in the lowest variance
+
+Also works on descrete data:
+size = 1.5 + 0.7 * high fat diet
+
+so ridge regression minimises: SSR + $\lambda \times {diet difference}^2$
+- diet difference refers to the distance in size between normal diet and high far diet
+
+for more complex model:
+size = intercept + slope * weight + diet difference * high fat diet
+so penalty term is: lambda * (slope ^ 2 + diet difference ^ 2)
+
+so in general, the penalty term will apply itself to every parameter, except for the intercept, is scaled by the measurements
+
+you cant make a line with one data point
+nor a plane with 2 data points
+- you would need at least 10,001 data points to make an equation of 10,001 parameters,
+	- sometimes that's not possible
+- what do you do here?
+
+use ridge regression!
+- The penalty can solve for all 10,001 params with 500 samples or fewer
+
+
+# Regularization: Lasso (L1) Regression
+Very similar to ridge regression but has some important differences
+Intead the penalty is: $\lambda \times |slope|$
+- adds a bit of bias but less variarience than leat squares
+
+The big difference is that L1 can make the slope go to 0
+- Ridge can only do this asymptotically
+
+This can eleminate any terms in an equation that are stupid to 0
+
+So lasso does better when there are lots of useless parameters
+Ridge does better then most of the variables are useful
+
+
+# XGBoost: Regression
 
 
 
