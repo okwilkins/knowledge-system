@@ -1,1 +1,4 @@
-.obsidian
+*
+!projects/*
+!references/*
+!slip-box/*
