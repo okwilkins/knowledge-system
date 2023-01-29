@@ -1,5 +1,9 @@
 *
+!projects/
 !projects/*
+!references/
 !references/*
+!slip-box/
 !slip-box/*
+!templates/
 !templates/*
