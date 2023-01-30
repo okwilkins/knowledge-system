@@ -1,5 +1,8 @@
----
-alias: verb
+Zettelcasten Index: 20230129214114
+Sequence: [[Infinitive]]
+Status: #idea
+Tags: [[Language]]
+
 ---
 
 A verb is a word that describes what the subject of the sentence is doing. They can indicate (physical or mental) actions, occurrences and states of being.
@@ -8,5 +11,4 @@ A verb is a word that describes what the subject of the sentence is doing. They 
 > Anita **is thinking** about horses.
 > True love **exists**.
 
-## Links
-- [[20230129214114-a]]
+# References
