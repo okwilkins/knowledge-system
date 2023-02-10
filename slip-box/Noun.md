@@ -1,7 +1,7 @@
 Zettelcasten Index: 20230129210911
 Sequence: [[Pronoun]], [[Adjective]]
 Status: #idea
-Tags: [[Language]]
+Zettelcasten Tags: [[Language]]
 
 ---
 

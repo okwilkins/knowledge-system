@@ -1,7 +1,7 @@
 Zettelcasten Index: 20230129214114
 Sequence: [[Infinitive]]
 Status: #idea
-Tags: [[Language]]
+Zettelcasten Tags: [[Language]]
 
 ---
 
