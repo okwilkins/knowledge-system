@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230129213905-a
-Sequence: [[20230129213905-a1]]
+Sequence: [[Bulgarian Starting Sentences with a Present Form]]
 Status: #idea
 Zettelcasten Tags: [[Bulgarian]], [[Verb]], [[Conjugation]], [[Citation Form]]
 

@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230129213905
-Sequence: [[20230129213905-a]]
+Sequence: [[Bulgarian Verbs]]
 Status: #idea
 Zettelcasten Tags: [[Language]], [[Bulgarian]], [[Verb]], [[Conjugation]]
 

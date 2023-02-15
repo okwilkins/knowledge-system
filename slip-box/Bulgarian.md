@@ -2,7 +2,16 @@ Status: #MOC
 Zettelcasten Tags: [[Language]]
 
 ---
-
-- [[Citation Form|citation form]]
-- [[20230129211820|articles]]
-- [[20230129213905|verb conjugation]]
+- [[Bulgarian Articles]]
+- [[Bulgarian Closed Questions]]
+- [[Bulgarian Conjugation]]
+- [[Bulgarian Counting To 10]]
+- [[Bulgarian Grammatical Gender]]
+- [[Bulgarian Negation]]
+- [[Bulgarian Starting Sentences with a Present Form]]
+- [[Bulgarian There Is]]
+- [[Bulgarian To Be]]
+- [[Bulgarian To Have Or Not To Have]]
+- [[Bulgarian Verbs]]
+- [[Citation Form]]
+- [[Numeral Plural]]
