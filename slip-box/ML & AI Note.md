@@ -2,6 +2,7 @@ Zettelcasten Index: 20230215230508
 Sequence:
 Status: #slip-box
 Zettelcasten Tags: [[Data Science]], [[Machine Learning]]
+MathJax: true
 
 ---
 
