@@ -1,4 +1,4 @@
-Zettelcasten Index: 2320230215182805
+Zettelcasten Index: 20230215182805
 Sequence:
 Status: #idea
 Zettelcasten Tags: [[Language]], [[Bulgarian]], [[Present Tense]], [[Verb]]
@@ -13,5 +13,3 @@ Examples:
 - Има ли котка? - Is there a cat?
 - Имаш ли куче? - Do you have a dog?
 - Момче ли си? - Are you a boy?
-
-# References

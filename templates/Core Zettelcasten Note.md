@@ -1,4 +1,4 @@
-Zettelcasten Index: {{date:YYYMMDD}}{{time:HHmmss}}
+Zettelcasten Index: {{date:YYYYMMDD}}{{time:HHmmss}}
 Sequence:
 Status: #idea
 Zettelcasten Tags: 

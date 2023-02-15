@@ -1,4 +1,4 @@
-Zettelcasten Index: 2320230215182239
+Zettelcasten Index: 20230215182239
 Sequence:
 Status: #idea
 Zettelcasten Tags:  [[Language]], [[Bulgarian]], [[Present Tense]], [[Verb]]
