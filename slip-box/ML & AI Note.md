@@ -593,7 +593,7 @@ There are many ways this tree can be built, but this is the most common way for 
 	3. Make a split based off the avg value
 	4. Calc similarity score for both leafs
 4. Now need to quanitify how much better the leaves cluster similar resdiuals than the root, do this by calculating the gain
-	1. $gain = {left}_{similarity} + {right}_{similarity} - {root}_{similarity}$
+	1. $gain = left_{similarity} + right_{similarity} - root_{similarity}$
 5. Now shift the threshold over so that it is the avg of th next two observation
 	1. More gain is good, is better at splitting the residuals into clusters of similar values
 6. Get best tree based of thresholds
