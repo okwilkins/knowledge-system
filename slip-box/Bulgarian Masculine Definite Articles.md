@@ -1,0 +1,15 @@
+Zettelcasten Index: 20230227102234-a
+Sequence:
+Status: #idea
+Zettelcasten Tags: [[Language]], [[Bulgarian]], [[Definite Article]], [[Bulgarian Articles]], [[Bulgarian Definite Articles]]
+
+---
+
+There are two different [[Definite Article|definite articles]] for masculine words. Words ending in a constant will use the -ът article when they are the subject of the sentence. Words will end with -а when they are the object.
+
+Examples:
+> "Мъж**ът** говори" - The man is talking
+> 
+> "Аз говоря с мъж**а**" - I'm talking with the man
+
+# References
