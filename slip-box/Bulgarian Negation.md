@@ -8,4 +8,4 @@ Zettelcasten Tags:  [[Language]], [[Bulgarian]], [[Negation]]
 "Не" means no and it can be used to negate a sentence:
 - "Ана не е мъж" - Ana is not a man
 
-# References
+## References

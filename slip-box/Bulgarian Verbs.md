@@ -23,4 +23,4 @@ Examples:
 Since the [[Conjugation|conjugations]] are unique to each subject, the [[Pronoun|pronoun]] can be left out:
 - Instead of "аз съм мъж" (I am a man), you can say "мъж съм"
 
-# References
+## References
