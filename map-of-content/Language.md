@@ -4,14 +4,19 @@ TOC: true
 
 ---
 
+[[Bulgarian Animals Exceptions]]
+[[Bulgarian Animals Masculine Plurals]]
+[[Bulgarian Spider Plural]]
 [[Bulgarian]]
 [[Adjective]]
 [[Adverb]]
+[[Bulgarian Animals]]
 [[Bulgarian Articles]]
 [[Bulgarian Closed Questions]]
 [[Bulgarian Conjugation]]
 [[Bulgarian Counting To 10]]
 [[Bulgarian Definite Articles]]
+[[Bulgarian Generalising Statements]]
 [[Bulgarian Grammatical Gender]]
 [[Bulgarian Masculine Definite Articles]]
 [[Bulgarian Negation]]
@@ -28,4 +33,5 @@ TOC: true
 [[Numeral Plural]]
 [[Pronoun]]
 [[Verb]]
+
 
