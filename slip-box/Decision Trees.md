@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230227115732
-Sequence: [[Decision Trees Branches, Nodes And Leaves]]
+Sequence: [[Decision Trees Branches And Nodes]]
 Status: #idea
 Zettelcasten Tags: [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]]
 
