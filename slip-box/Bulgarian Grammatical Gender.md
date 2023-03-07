@@ -27,7 +27,7 @@ Words ending in -и, -у, -ю are generally loan words (often coming from Englis
 Examples:
 - Приятел - Приятели
 - Град - Градове
-- Мъж - Мъже (an exception)
+- Мъж - Мъже (an [[Bulgarian Exceptions|exception]])
 
 ### Feminine Words
 The final -а or -я is replaced with и
