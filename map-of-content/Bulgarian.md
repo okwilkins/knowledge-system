@@ -1,5 +1,5 @@
 Status: #MOC
-Zettelcasten Tags: [[Map of Content]], [[Language]]
+Zettelcasten Tags: [[Map Of Content]], [[Language]]
 TOC: true
 
 ---
