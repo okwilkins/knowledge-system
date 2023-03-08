@@ -1,4 +1,4 @@
-Zettelcasten Index: 20230227115732-c1
+Zettelcasten Index: 20230227115732-b1
 Sequence:
 Status: #idea
 Zettelcasten Tags: [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]], [[Decision Trees]], [[Gini Impurity]], [[Gini Impurity of Decision Tree Leaves]]
