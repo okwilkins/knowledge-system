@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230227115732-a1
-Sequence:
+Sequence: [[Building the Root Node of a Decision Tree With Numerical Features]]
 Status: #idea
 Zettelcasten Tags: [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]], [[Decision Trees]], [[Gini Impurity of Decision Tree Leaves]], [[Decision Tree Gini Impurity]]
 
@@ -29,4 +29,4 @@ flowchart TD
 ```
 
 ## References
-- [[StatQuest with Josh Starmer]]
+- [[StatQuest with Josh Starmer#Decision Trees]]

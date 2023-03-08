@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230227115732-c
-Sequence:
+Sequence: [[Preventing Decision Tree Overfitting]]
 Status: #idea
 Zettelcasten Tags: [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]], [[Decision Trees]], [[Decision Trees Branches And Nodes]], [[Gini Impurity of Decision Tree Leaves]]
 

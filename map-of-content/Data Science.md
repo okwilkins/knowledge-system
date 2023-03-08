@@ -12,4 +12,5 @@ Zettelcasten Tags: [[Map Of Content]]
 - [[Machine Learning Variance]]
 - [[Max and Min Gini Impurity of Decision Tree Leaves]]
 - [[Splitting a Leaf of a Decision Tree]]
-
+- [[Building the Root Node of a Decision Tree With Numerical Features]]
+- [[Preventing Decision Tree Overfitting]]
