@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230227115732
-Sequence: [[Decision Trees Branches And Nodes]]
+Sequence: [[Decision Trees Branches And Nodes]], [[Building The Root Node of a Decision Tree]]
 Status: #idea
 Zettelcasten Tags: [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]]
 
