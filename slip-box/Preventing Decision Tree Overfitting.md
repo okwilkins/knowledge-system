@@ -1,7 +1,7 @@
 Zettelcasten Index: 20230227115732-c1
 Sequence:
 Status: #idea
-Zettelcasten Tags:  [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]], [[Overfitting]], [[Decision Tree Pruning]], [[Splitting a Leaf of a Decision Tree]]
+Zettelcasten Tags:  [[Data Science]], [[Machine Learning]], [[Artificial Intelligence]], [[Overfitting]], [[Decision Tree Pruning]], [[Splitting a Leaf of a Decision Tree]], [[Decision Trees]]
 
 ---
 
