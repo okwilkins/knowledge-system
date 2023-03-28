@@ -27,7 +27,7 @@ Zettelcasten Tags: [[Map Of Content]], [[Language]]
 [[Bulgarian To Have Or Not To Have]]
 [[Bulgarian Verbs]]
 [[Citation Form]]
-[[Definate Articles for Words Ending in й]]
+[[Definite Articles for Words Ending in й]]
 [[Numeral Plural]]
 
 
