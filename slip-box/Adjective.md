@@ -1,5 +1,5 @@
 Zettelcasten Index: 20230129210911-b
-Sequence:
+Sequence: [[Fact Adjective]]
 Status: #idea
 Zettelcasten Tags: [[Language]], [[Noun]]
 
