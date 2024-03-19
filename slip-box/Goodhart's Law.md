@@ -5,5 +5,5 @@ Zettelcasten Tags: [[Philosophy]], [[Goodhart's Law]], [[Economic Theory]], [[Me
 
 ---
 
-When a measure becomes a target , it ceases to be a good measure.
+When a measure becomes a target, it ceases to be a good measure.
 ## References
