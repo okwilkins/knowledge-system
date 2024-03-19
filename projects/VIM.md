@@ -51,3 +51,6 @@
 - To repeat the prev command: `.`
 
 - ANy problems type: `:help`
+
+
+## NeoVIM
