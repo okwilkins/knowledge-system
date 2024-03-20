@@ -7,3 +7,4 @@ Status: #MOC
 - [[Data Science]]
 - [[Language]]
 - [[Programming]]
+- [[Philosophy]]
