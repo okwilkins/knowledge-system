@@ -4,6 +4,7 @@ TOC: true
 
 ---
 
-[[Mermaid Class Diagram]]
-[[Mermaid Entity Relationship Diagram]]
-[[Mermaid Gitgraph Diagram]]
+- [[Mermaid Class Diagram]]
+- [[Mermaid Entity Relationship Diagram]]
+- [[Mermaid Gitgraph Diagram]]
+- [[Chesterton's Fence in Code]]
