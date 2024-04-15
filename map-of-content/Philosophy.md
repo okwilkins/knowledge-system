@@ -3,6 +3,6 @@ Zettelcasten Tags: [[Map Of Content]]
 
 ---
 
-- [[Goodhart's Law]]
-- [[Goodhart's Law and Gaming the System]]
-- [[Chesterton's Fence]]
+- [[20240319141300]]
+- [[20240319141300-a]]
+- [[20240320131426]]
