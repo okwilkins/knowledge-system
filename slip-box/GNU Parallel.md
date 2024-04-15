@@ -1,7 +1,7 @@
 Zettelcasten Index: 20240415211657
-Sequence:
+Sequence: [[GNU Parallel With Hard To Multi-Thread Languages]]
 Status: #idea
-Zettelcasten Tags: [[Linux]], [[Terminal]], [[CLI]], [[Parallel]], [[Concurrency]], [[Pipeline]]
+Zettelcasten Tags: [[GNU Parallel]], [[Linux]], [[Terminal]], [[CLI]], [[Parallel]], [[Concurrency]], [[Pipeline]], [[Multi-Threading]]
 
 ---
 
