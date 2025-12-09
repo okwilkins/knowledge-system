@@ -27,3 +27,11 @@ After compiling:
 	- Third, it will link in one or more **library files**. These are collections of pre-compiled code that have been packaged up for reuse in other programs.
 	- Lastly, it outputs to desired output file, typically an executable but it could also be a library file.
 
+## 0.9 Configuring your compiler: Build configurations
+
+Compile flags:
+- `ggdb` for debug builds
+- `-O2 -DNDEBUG` for release builds
+- `-O0` optimisation level for debug builds
+- `O2` for release builds
+- `O3` adds additional optimisations but may not be faster than `O2`. Need to compare between.
