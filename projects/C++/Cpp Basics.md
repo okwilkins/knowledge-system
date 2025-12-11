@@ -55,3 +55,81 @@ int e {}; // Value init
 
 - In C++17 it introduced `[[maybe_unused]]`
 	- Prepend this before variable creation to stop the comipler complaining the variable is not used.
+
+## 1.5 Introduction to iostream: cout, cin, and endl
+
+- `std::cout << 4;` `<<` is the insert operator.
+	- It's only called that with iostreams (reason below).
+- `<<` can be chained together multiple times.
+- You can do the same with `>>`
+```cpp
+#include <iostream> // for std::cout
+int main() {
+    std::cout << "Hello" << " world!";
+    return 0;
+}
+```
+
+- It is actually an overloaded bitwise left-shift operator
+	- Like if you did `x = y << 1`
+
+- Use `std::endl` for an OS-specific character or sequence of characters to move the cursor to the next line.
+```cpp
+#include <iostream>
+int main() {
+	std::cout << "Hi!" << std::endl;
+	std::cout << "My name is Alex." << std::endl;
+}
+```
+
+- `std::cout` is buffered.
+	- Just a FIFO.
+- Will wait for the queue to be full or if enough time has passed it is "flushed" to the terminal.
+
+- `std::endl` will also flush the buffer.
+	- In that case, you would manually insert operator on a `'\n'`.
+	- `\n` is treated as a single LF (line feed) character.
+- Prefer to use `\n` over `endl` when outputting text to the console.
+- Use `endl` when the output when you want to flush.
+
+- `std::cin` is also buffered.
+- Each line of input data is automatically terminated by a '\n' character.
+
+
+## 1.6 Uninitialized variables and undefined behavior
+
+- C/C++ do not init vars with a non-zero value. By default it takes whatever data happens to be at that memory address.
+
+## 1.7 Keywords and naming identifiers
+
+- It's convention to use snake_case for variables.
+- Use camelCase for functions.
+- Use PascalCase for user defined types like structs, classes etc.
+
+
+## 1.9 Introduction to literals and operators
+
+```cpp
+std::cout << "Hello world!";
+int x {5};
+```
+- Both the string and `5` a **literals** (or literal constants).
+- The value of a literal cannot be changed.
+	- The literal `5` always has a value of `5`.
+- A literal's value is placed directly in the executable.
+
+Operators:
+- The number of operands that an operator can take is called the operator's **arity**.
+- **Unary** operators operator acts on one operands.
+	- -5
+- Binary operators act on two.
+	- 3 + 4
+- Ternary act on three.
+	- Only one of these in C++.
+- Nullary acts on zero.
+	- Only one of these in C++.
+
+Side effects:
+- An operator or function that has some observable effect is called a side effect.
+	- It does more than just calculate and output a value.
+- Like `throw`, `delete` or outputting to `cout`.
