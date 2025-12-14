@@ -133,3 +133,28 @@ Side effects:
 - An operator or function that has some observable effect is called a side effect.
 	- It does more than just calculate and output a value.
 - Like `throw`, `delete` or outputting to `cout`.
+
+## 1.10 Introduction to expressions
+
+```cpp
+int five() {
+	return 5;
+}
+
+int main() {
+	int a{2};
+	int b{2 + 3};
+	int c {(2 * 3) + 4};
+	int d{b};
+	int e{five()};
+}
+```
+
+- An **expression** is a non-empty sequence of literals, variables, operators and function calls.
+- The process of executing an expression is called an **evaluation**.
+- The resulting value produced is called the **result** of the expression.
+- An **expression statement** is a statement that consists of an expression followed by a semi-colon.
+- A **subexpression** is an expression used as an operand.
+	- `x = 4 + 5` has `x` and `4 + 5` as subexpressions.
+	- The subexpressions of `4 + 5` are `4` and `5`.
+- A compound expression is an expression that contains two or more uses of operators.
