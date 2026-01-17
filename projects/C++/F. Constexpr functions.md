@@ -302,4 +302,114 @@ int main() {
 }
 ```
 
-- Note that the consteval function returns by value. This might be inefficient to do at runtime, if the value has something expensive to copy.
+- Note that the consteval function returns by value. This might be inefficient to do at runtime, if the value has something expensive to copy. 
+
+
+## F.4 — Constexpr functions (part 4)
+
+### Constexpr/consteval functions can use non-const local variables
+
+```cpp
+#include <iostream>
+
+consteval int doSomething(int x, int y) {
+	x = x + 2; // modify the value of non-const function parameters
+	
+	int z {x + y}; // can instantiate non-const local variables
+	if (x > y) {
+		z = z - 1; // and modify their values
+	}
+	
+	return z;
+}
+
+int main() {
+	constexpr int g {doSomething(5, 6)};
+	std::cout << g << '\n';
+	
+	return 0;
+}
+```
+
+- When such functions are evaluated at compile-time, the compiler will essentially "execute" the function and return the calculated value.
+
+### Constexpr/consteval functions can use function parameters and local variables as arguments in constexpr function calls
+
+- Surprisingly, A constexpr or consteval function can use its function parameters (which aren't constexpr) or even local variables (which may not be const at all) as arguments in a constexpr function call.
+- When a constexpr or consteval function is being evaluated at compile-time, the value of all function parameters and local variables must be known to the compiler.
+- Therefore, in this specific context, C++ allows these values to be used as arguments in a call to a constexpr function and that constexpr function call can still be evaluated at compile-time.
+
+```cpp
+#include <iostream>
+
+constexpr int goo(int c) {
+	return c;
+}
+
+constexpr int foo(int b) {
+	return goo(b); // if foo() is resolved at compile-time, then goo(b) can be also resolved at compile-time
+}
+
+int main() {
+	std::cout << foo(5);
+	
+	return 0;
+}
+```
+
+### Can a constexpr function call a non-constexpr function?
+
+- The answer is yes but only when the constexpr function is being evaluated in a non-constant context.
+- A non-constexpr function may not be called when a constexpr function is evaluating in a constant context and doing so will produce a compilation error.
+
+- Calling a non-constexpr function is allowed so that a constexpr function can do something like this:
+
+```cpp
+#include <type_traits>
+
+constexpr int someFuntion() {
+	if (std::is_constant_evaluated()) {
+		return someConstexprFcn();	
+	} else {
+		return someNonConstexprFcn();	
+	}
+}
+```
+
+- Consider this variant:
+
+```cpp
+constexpr int someFunction(bool b) {
+	if (b) {
+		return someConstexprFnc();	
+	} else {
+		return someNonConstexprFcn();	
+	}
+}
+```
+
+- This is legal as long as `someFunction(false)` is never called in a constant expression.
+
+For best results, follow:
+1. Avoid calling non-constexpr functions from within a constexpr function if possible.
+2. If a constexpr function requires different behaviour for constant and non-constant contexts, conditionalise the behaviour with `if (std::is_constant_evaluated())` (in C++20) or `if consteval` (C++23 onward).
+3. Always test constexpr functions in a constant context, as they may work when called in non-constant contexts but fail in a constant context.
+
+### When should I constexpr a function?
+
+- As a general rule, if a function can be evaluated as part of a required constant expression, it should be made `constexpr`.
+
+- A **pure function** is a function that meets the following criteria:
+	- The function always returns the same return result when given the same arguments.
+	- The function has no side effects.
+- Pure functions should generally be made constexpr.
+
+Best practice:
+- Unless there is a specific reason no to, a function that can be evaluated as part of a constant expression should be made `constexpr`, even if it isn't currently used in that way.
+- A function that cannot be evaluated as part of a required constant expression should not be marked as `constexpr`.
+
+### Why not constexpr every function?
+
+1. `constexpr` signals that a function can be used in a constant expression. If the function cannot be evaluated as part of a constant expression, it should not be marked as `constexpr`.
+2. `constexpr` is part of the interface of a function. Once a function is made constexpr, it can be called by other constexpr functions or used in contexts that require constant expressions. Removing the `constexpr` later will break such code.
+3. `constxpr` functions can be harder to debug since they cannot be used with breakpoints or stepped through with a debugger.
