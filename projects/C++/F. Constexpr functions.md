@@ -210,7 +210,7 @@ int main() {
 	std::cout << greater(5, 6) << " is greater!\n"; // ok
 	
 	int x{5}; // not constexpr
-	std::cout << greater(x, 6) << " is greater!\n"; // error: consteval functons must evaluate at compile-time
+	std::cout << greater(x, 6) << " is greater!\n"; // error: consteval functions must evaluate at compile-time
 	
 	return 0;
 }
