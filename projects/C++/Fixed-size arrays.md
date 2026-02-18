@@ -217,3 +217,136 @@ int main() {
 - Inside the implementation of `std::get`, there is a static_assert that checks to ensure that the non-type template argument is smaller than the array length.
 	- If it isn't, then the static_assert will halt the compilation process with compilation error.
 - Since template arguments must be constexpr, `std::get()` can only be called with constexpr indices.
+
+
+## 17.3 — Passing and returning std::array
+
+- `std::array` can be passed by value, which means an expensive copy will be made.
+- Therefore, typically, `std::array` is passed by const reference, to avoid such copies.
+
+- With a `std::array`, both the element type and array length are part of the type information of the object.
+	- Therefore, both the element type and array length must be given.
+
+```cpp
+#include <array>
+#include <iostream>
+
+void passByRef(const std::array<int, 5>& arr) {
+	std::cout << arr[0] << '\n';
+}
+
+int main() {
+	std::array arr{9, 7, 5, 3, 1};
+	passByRef(arr);
+	
+	return 0;
+}
+```
+
+### Using function templates to pass std::array of different element types or lengths
+
+- Since `std::array` is defined like this:
+
+```cpp
+template<typename T, std::size_t N>
+struct array;
+```
+
+- A function template that uses the same template parameter declaration can be created:
+
+```cpp
+#include <array>
+#include <iostream>
+
+template <typename T, std::size_t N>
+void passByRef(const std::array<T, N>& arr) {
+	static_assert(N != 0);
+	std::cout << arr[0] << '\n';
+}
+```
+
+### Auto non-type template parameters
+
+- Having to remember (or look up) the type of a non-type template parameter so that it can be used in a template parameter declaration is a pain.
+- In C++20, the `auto` keyword can be used in a template parameter declaration to have a non-type template parameter deduce its type from the argument
+
+```cpp
+#include <array>
+#includ <iostream>
+
+template <typename T, auto N>
+void passByRef(const std::array<T, N>& arr) {
+	static_assert(N != 0);
+	std::cout << arry[0] << '\n';
+}
+```
+
+### Static asserting on array length
+
+```cpp
+#include <array>
+#include <iostream>
+
+template <typename T, std::size_t N>
+void printElement3(const std::array<T, N>& arr) {
+	static_assert (N > 3);
+	std::cout << arr[3] << '\n';
+}
+```
+
+### Returning a std::array
+
+- Unlike `std::vector`, `std::array` is not move-capable, so returning a `std::array` by value will make a copy of the array.
+- The elements inside the array will be moved, if they are move-capable and are copied otherwise.
+
+- There are two conventional option here and which you should pick depends on circumstances.
+
+### Returning a std::array by value
+
+ - It is ok to return a `std::array` by value when all of the following are true:
+	 - The array isn't huge.
+	 - The element type is cheap to copy (or move).
+	 - The code isn't being used in a performance-sensitive context.
+
+
+### Returning a std::array via an out parameter
+
+- In cases where return by value is too expensive, an out-parameter can be used instead.
+- In this case, the caller is responsible for passing in the `std:array`, by non-const reference (or by address) and the function can then modify this array.
+
+```cpp
+#include <array>
+#include <limits>
+#include <iostream>
+
+template <typename T, std::size_t N>
+void inputArray(std::array<T, N>& arr) {
+	std::size_t index{0};
+	
+	while (index < N) {
+		std::cout << "Enter value # " << index << ": ";
+		std::cin >> arr[index];
+		++index;	
+	}
+}
+
+int main() {
+	std::array<int, 5> arr{};
+	inputArray(array);
+	
+	std::cout << "The value of element 2 is " << arr[2] << '\n';
+	
+	return 0;
+}
+```
+
+- The primary advantage of this method is that no copy of the array is ever made.
+- There are a few downsides:
+	- This method of returning data is non-conventional and it is not easy to tell that the function is modifying the argument.
+	- This method cannot be used to assign values to the array, not initialise it.
+	- Such a function cannot be used to produce temporary objects.
+
+### Returning a std::vector instead
+
+- `std::vector` is move-capable and can be returned by value without making expensive copies.
+- If returning a `std::array` by value, the `std::array` probably isn't constexpr and using (and returning) a `std::vector` should instead be considered.
