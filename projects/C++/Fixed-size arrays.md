@@ -182,3 +182,38 @@ int main() {
 - Unfortunately, using `std::to_array` is more expensive than creating a `std::array` directly.
 	- This is because it involves the creation of a temporary `std::array` that is then used to copy initialise the desired `std::array`.
 	- For this reason, `std::to_array` should only be used in cases where the type can't be effectively determined from the initialisers and should be avoided when an array is created many times.
+
+
+## 17.2 — std::array length and indexing
+
+### The length of a std::array has type std::size_t
+
+- Because the length of an array is constexpr, there is no issue with sign conversion when converting to a signed integral value.
+
+### std::get() does compile-time bounds checking for constexpr indices
+
+- Since the length of a `std::array` is constexpr, if the index is also constexpr value, then the compiler should be able to validate at compile-time that the constexpr index is withing the bounds of the array.
+- `operator[]` does not bounds checking by definition.
+- The `at()` member function only does runtime bounds checking.
+- Function parameters can't be constexpr (even for constexpr or consteval functions).
+
+- To get compile-time bounds checking, when having a constexpr index, the `std::get()` function template can be used.
+
+```cpp
+#include <array>
+#include <iostream>
+
+int main() {
+	constexpr std::array prime{2, 3, 5, 7, 11};
+	
+	std::cout << std::get<3>(prime);
+	// Invalid index (compile error)
+	std::cout << std::get<9>(prime);
+	
+	return 0;
+}	
+```
+
+- Inside the implementation of `std::get`, there is a static_assert that checks to ensure that the non-type template argument is smaller than the array length.
+	- If it isn't, then the static_assert will halt the compilation process with compilation error.
+- Since template arguments must be constexpr, `std::get()` can only be called with constexpr indices.
