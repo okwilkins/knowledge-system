@@ -350,3 +350,190 @@ int main() {
 
 - `std::vector` is move-capable and can be returned by value without making expensive copies.
 - If returning a `std::array` by value, the `std::array` probably isn't constexpr and using (and returning) a `std::vector` should instead be considered.
+
+
+## 17.4 — std::array of class types, and brace elision
+
+- Initialising a `std::array` of structs or classes tends to trip up new programmers up.
+
+### Defining and assigning to a std::array of structs
+
+```cpp
+#include <array>
+#include <iostream>
+
+struct House {
+	int number{};
+	int stories{}
+	int roomsPerStory{};
+};
+
+int main() {
+	std::array<House, 3> houses{};
+	
+	houses[0] = {13, 1, 7};
+	houses[1] = {14, 2, 5};
+	houses[2] = {15, 2, 4};
+	
+	for (const auto& house : houses) {
+		std::cout << "House number " << house.number
+			  << " has " << (house.stories * house.roomsPerStory)
+			  << " rooms.\n";
+	}
+	
+	return 0;
+}
+```
+
+```
+House number 13 has 7 rooms.
+House number 14 has 10 rooms.
+House number 15 has 8 rooms.
+```
+
+### Initialising a std::array of structs
+
+```cpp
+#include <array>
+#include <iostream>
+
+struct House {
+	int number{};
+	int stories{};
+	int roomsPerStory{};
+};
+
+int main() {
+	// CTAD <House, 3>
+	constexpr std::array houses {
+		House{13, 1, 7},
+		House{14, 2, 5},
+		House{15, 2, 4},
+	};
+	
+	for (const auto& house : houses) {
+        std::cout << "House number " << house.number
+            << " has " << (house.stories * house.roomsPerStory)
+            << " rooms.\n";
+	}
+	
+	return 0;
+}
+```
+
+### Initialisation without explicitly specifying the element type for each initialiser
+
+- In the above example, each initialiser requires to list the element type:
+
+```cpp
+constexpr std::array houses {
+	House{13, 1, 7},
+	House{14, 2, 5},
+	House{15, 2, 4},
+};
+```
+
+- This was not the case to do the same in the assignment case:
+
+```cpp
+// The compiler knows that each elemetn of houses is a House
+// so it will implicitly convert the right hand side of each assignment to a House
+houses[0] = { 13, 1, 7 };
+houses[1] = { 14, 2, 5 };
+houses[2] = { 15, 2, 4 };
+```
+
+- It might seem like this would work:
+
+```cpp
+// Doesn't work
+constexpr std::array<House, 3> houses {
+	{13, 1, 7},
+	{14, 2, 5},
+	{15, 2, 4},
+};
+```
+
+- A `std::array` is defined as a struct that contains a single C-style array member (whose name is implementation defined), like this:
+
+```cpp
+template<typename T, std::size_t N>
+struct array {
+	// A C-stlye array with N elements of type T
+	T implementation_defined_name[N];
+}
+```
+
+- So when trying to initialise `houses` above, the compiler interprets the initialisation like this:
+
+```cpp
+// Doesn't work
+constexpr std::array<House, 3> houses {
+	{13, 1, 7},
+	{14, 2, 5},
+	{15, 2, 4},
+};
+```
+
+- The correct way to initialise the above is to add an extra set of braces as follows:
+
+```cpp
+constexpr std::array<House, 3> houses {
+	{
+		{13, 1, 7},
+		{14, 2, 5},
+		{15, 2, 4},
+	}
+};
+```
+
+- When initialising a `std::array` with a strut, class or array and not providing the element type with each initialiser, an extra pair of braces is needed.
+	- This is so that the compiler will properly interpret what to initialise.
+- This is an artefact of aggregate initialisation and other standard library container types (that use list constructors) do not require the double braces in these cases.
+
+```cpp
+#include <array>
+#include <iostream>
+
+struct House {
+	int number{};
+	int stories{};
+	int roomsPerStory{};
+};
+
+int main() {
+	constexpr std::array<House, 3> houses {{
+		{13, 1, 7},
+		{14, 2, 5},
+		{15, 2, 4},
+	}};
+	
+	for (const auto& house : houses) {
+        std::cout << "House number " << house.number
+                  << " has " << (house.stories * house.roomsPerStory)
+                  << " rooms.\n";	
+	}
+	
+	return 0;
+}
+```
+
+### Brace elision for aggregates
+
+- Given the explanation above, it may be confusing why the above case requires double braces but all the other cases require single braces.
+
+```cpp
+#include <array>
+
+int main() {
+	constexpr std::array<int, 5> arr{1, 2, 3, 4, 5};
+	
+	for (const auto n : arr) {
+		std::cout << n << '\n';	
+	}
+	
+	return 0;
+}
+```
+
+- Aggregates in C++ support a concept called **brace elision**, which lays out some rules for when multiple braces may be omitted.
