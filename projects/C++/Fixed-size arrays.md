@@ -626,3 +626,112 @@ auto ref2{std::reference_wrapper{x}};
 ```
 
 - Since `std::ref()` and `std::cref()` are shorter to type, they are still widely used to create `std::reference_wraper` objects.
+
+### 17.6 — std::array and enumerations
+
+### Using static assert to ensure the proper number of array initialisers
+
+- When initialising a `constexpr std::array` using CTAD, the compiler will deduce how long the array should be from the number of initialisers.
+- If less initialisers are provided than there should be, the array will be shorter than expected and indexing it can lead to undefined behaviour.
+
+- Whenever the number of initialisers in a `constexpr std::array` can be reasonably sanity checked, they should be done so:
+
+```cpp
+#include <array>
+
+enum StudentNames {
+	kenny,
+	kyle,
+	stan,
+	butters,
+	cartman,
+	max_students
+};
+
+int main() {
+	constexpr std::array testScores{78, 84, 66, 77};
+	// Compile error: static_assert condition failed
+	static_assert(std::size(testScores) == max_students);
+
+	return 0;	
+}
+```
+
+- This way, when adding a new enumerator but forget to add a corresponding initialiser to `testScores`, the program will fail to compile.
+
+### Using constexpr arrays for better enumeration input and output
+
+```cpp
+#include <array>
+#include <string>
+
+namespace Colour {
+enum Type {
+	black
+	red,
+	blue,
+	max_colours,
+};
+
+using namespace std::string_view_literals;
+constexpr std::array colourName{"black"sv, "red"sv, "blue"sv};
+static_assert(std::size(colourName) == max_colours);
+}
+
+constexpr std::string_view getColourName(Colour::Type colour) {
+	return Colour::colourName[static_cast<std::size_t>(colour)];
+}
+```
+
+### Range-based for-loops and enumerations 
+
+- Unfortunately, range-based for-loops won't allow iteration over the enumerators of an enumeration. 
+
+```cpp
+#include <iostream>
+
+namespace Colour {
+enum Type {
+	black,
+	red,
+	blue,
+	max_colors,
+};
+}
+
+int main() {
+	// Compile error: can't traverse enumeration
+	for (auto c: Colour::Type) {
+		std::cout << c << '\n';	
+	}
+}
+```
+
+- There are many creative solution for this.
+- Since it's possible to use a range-based for-loop on an array, one of the most straightforward solutions is to create a `constexpr std::array` containing each of the enumerators and then iterate over that.
+	- This method only works if the enumerators have unique values.
+
+```cpp
+#include <array>
+#include <iostream>
+
+namespace Colour{
+enum Type {
+	black,
+	red,
+	blue,
+	max_colours,
+};
+
+constexpr std::array types{black, red, blue};
+static_assert(std::size(types) == max_colours);
+}
+
+int main() {
+	for (auto c: Colour::types) {
+		std::cout << c << '\n';	
+	}
+	
+	return 0;
+}
+```
