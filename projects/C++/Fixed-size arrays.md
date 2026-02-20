@@ -537,3 +537,92 @@ int main() {
 ```
 
 - Aggregates in C++ support a concept called **brace elision**, which lays out some rules for when multiple braces may be omitted.
+
+
+## 17.5 — Arrays of references via std::reference_wrapper
+
+- Because references are not objects, it is not possible to make an array of references.
+- The elements of an array must also be assignable and references can't be reseated.
+
+```cpp
+#include <array>
+#include <iostream>
+
+int main() {
+	int x{1};
+	int y{2};
+
+	// Compile error: cannot define array of references
+	[[maybe_unused]] std::array<int&, 2>{x, y};
+	
+	int& ref1{x};
+	int& ref2{y};
+	// Ok: this is actually a std::array<int, 2>, not refs
+	[[maybe_unused]] std::array valarr{ref1, ref2};	
+	
+	return 0;
+}
+```
+
+### std::reference_wrapper
+
+- `std::reference_wrapper` is a class template that lives in the `<functional>` header.
+- It takes a type template argument T and then behaves like a modifiable lvalue reference to T>
+
+- There are a few things worth noting about `std::reference_wrapper`.
+	- `Operator=` will reseat a `std::reference_wrapper` (change which object is being referenced).
+	- `std::reference_wrapper<T>` will implicitly convert to `T&`.
+	- The `get()` member function can be used to get a `T&`.
+		- This is useful when wanting to update the value of the object being referenced.`
+
+```cpp
+#include <array>
+#include <functional>
+#include <iostream>
+
+int main() {
+	int x{1};
+	int y{2};
+	int z{3};
+	
+	std::array<std::reference_wrapper<int>, 3> arr{x, y, z};
+	// Modify the object in index 1	
+	arr[1].get() = 5;
+	
+	std::cout << arr[1] << y << '\n';
+	
+	return 0;
+}
+```
+
+```
+55
+```
+
+### std::ref and std::cref
+
+- Prior to C++17, CTAD didn't exist, so all template arguments for a class type needed to be listed explicitly.
+
+```cpp
+int x{5};
+
+std::reference_wrapper<int> ref1{x};
+auto ref2{std::reference_wrapper<int>{x}};
+```
+
+- To make things easier, the `std::ref()` and `std::cref()` functions were provided as shortcuts to create `std::reference_wrapper` and `const std::reference_wrapper` wrapped objects.
+
+```cpp
+int x{5};
+auto ref{std::ref(x)};
+auto cref{std::cref(x)};
+```
+
+- With CTAD in C++17, this is possible:
+
+```cpp
+std::reference_wrapper ref1{x};
+auto ref2{std::reference_wrapper{x}};
+```
+
+- Since `std::ref()` and `std::cref()` are shorter to type, they are still widely used to create `std::reference_wraper` objects.
